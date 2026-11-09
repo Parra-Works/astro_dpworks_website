@@ -46,6 +46,7 @@ Resume/                        # Source resume files (About Me content)
 
 - `/commit_changes` — commit changes with a short Markdown summary and file table.
 - `/squash_changes` — squash branch commits into one with a per-file, per-commit table.
+- `/squash_merge` — commit, squash, then merge the branch into `main` and stay on `main`.
 
 ## Content notes
 

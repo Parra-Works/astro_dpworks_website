@@ -194,12 +194,14 @@ const education = [
   {
     degree: 'M.S., Computer Software Engineering',
     school: 'University of Maryland Global Campus',
+    url: 'https://www.umgc.edu',
     dates: '2021 – 2023',
     note: 'GPA 3.6',
   },
   {
     degree: 'B.S., Computer Science',
     school: 'Tecnológico de Monterrey',
+    url: 'https://tec.mx/en',
     dates: '1993 – 1998',
     note: 'GPA 3.0',
   },
@@ -224,7 +226,7 @@ const profile = {
       'https://www.linkedin.com/in/danpaji/',
       'https://x.com/DanParraWorks',
     ],
-    alumniOf: education.map(({ school }) => ({ '@type': 'CollegeOrUniversity', name: school })),
+    alumniOf: education.map(({ school, url }) => ({ '@type': 'CollegeOrUniversity', name: school, url })),
     knowsLanguage: ['Spanish', 'English'],
   },
 };
@@ -275,7 +277,15 @@ const profile = {
           education.map((item) => (
             <li>
               <h3>{item.degree}</h3>
-              <p>{item.school} · {item.dates} · {item.note}</p>
+              <p>
+                <a
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${item.school} (opens in a new tab)`}
+                >{item.school}</a>
+                · {item.dates} · {item.note}
+              </p>
             </li>
           ))
         }
@@ -284,7 +294,44 @@ const profile = {
 
     <section aria-labelledby="languages-heading">
       <h2 id="languages-heading">Languages</h2>
-      <p>Spanish (native/bilingual) · English (full professional)</p>
+      <ul class="languages">
+        <li>
+          <span class="flag" aria-hidden="true">
+            <svg viewBox="0 0 30 20" focusable="false">
+              <rect width="30" height="20" fill="#ffffff"></rect>
+              <rect width="10" height="20" fill="#006847"></rect>
+              <rect x="20" width="10" height="20" fill="#ce1126"></rect>
+              <circle cx="15" cy="10" r="2.2" fill="none" stroke="#8a6d3b" stroke-width="0.9"></circle>
+            </svg>
+          </span>
+          Spanish (Native)
+        </li>
+        <li>
+          <span class="flag" aria-hidden="true">
+            <svg viewBox="0 0 30 20" focusable="false">
+              <rect width="30" height="20" fill="#ffffff"></rect>
+              <g fill="#b22234">
+                <rect width="30" height="2.86" y="0"></rect>
+                <rect width="30" height="2.86" y="5.71"></rect>
+                <rect width="30" height="2.86" y="11.43"></rect>
+                <rect width="30" height="2.86" y="17.14"></rect>
+              </g>
+              <rect width="12" height="10.72" fill="#3c3b6e"></rect>
+              <g fill="#ffffff">
+                <circle cx="2.4" cy="2.4" r="0.8"></circle>
+                <circle cx="6" cy="2.4" r="0.8"></circle>
+                <circle cx="9.6" cy="2.4" r="0.8"></circle>
+                <circle cx="4.2" cy="5.4" r="0.8"></circle>
+                <circle cx="7.8" cy="5.4" r="0.8"></circle>
+                <circle cx="2.4" cy="8.4" r="0.8"></circle>
+                <circle cx="6" cy="8.4" r="0.8"></circle>
+                <circle cx="9.6" cy="8.4" r="0.8"></circle>
+              </g>
+            </svg>
+          </span>
+          English (Fluent)
+        </li>
+      </ul>
     </section>
 
     <section aria-labelledby="experience-heading">
@@ -371,6 +418,10 @@ const profile = {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
     gap: var(--space-8);
+  }
+
+  .skill-group {
+    margin-top: var(--space-8);
   }
 
   .skill-group h3 {
@@ -465,6 +516,35 @@ const profile = {
     margin: var(--space-1) 0 0;
     color: var(--color-muted);
     font-size: var(--text-sm);
+  }
+
+  .languages {
+    display: grid;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .languages li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .flag {
+    display: inline-flex;
+    width: 1.35rem;
+    height: 0.9rem;
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .flag svg {
+    display: block;
+    width: 100%;
+    height: 100%;
   }
 
   @media (max-width: 40rem) {
