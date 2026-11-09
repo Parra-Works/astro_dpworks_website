@@ -13,6 +13,18 @@ const person = {
     'https://x.com/DanParraWorks',
   ],
 };
+
+const tools = [
+  { name: 'Code', path: 'M9 7l-5 5 5 5M15 7l5 5-5 5' },
+  { name: 'Frameworks', path: 'M12 3l8 4.5-8 4.5-8-4.5L12 3zM4 12l8 4.5 8-4.5' },
+  { name: 'Automation', path: 'M13 3L5 13h5l-1 8 8-10h-5l1-8z' },
+];
+
+const lanes = [
+  { id: 'create', label: 'Create', badge: 'M12 5v14M5 12h14' },
+  { id: 'modernize', label: 'Modernize', badge: 'M12 19V5M6 11l6-6 6 6' },
+  { id: 'automate', label: 'Automate', badge: 'M5 12a7 7 0 0 1 12-5M17 4v3h-3' },
+];
 ---
 
 <BaseLayout
@@ -28,14 +40,91 @@ const person = {
       I'm Daniel Parra, founder of Parra.Works. This website captures and represents what I do: designing and building reliable, accessible web experiences with a focus on clean architecture and the details that make products feel effortless. At Parra.Works, we are driven by generative AI, leveraging these tools to optimize workflows and implement effective solutions.
     </p>
   </section>
+
+  <section class="flow" aria-labelledby="flow-title">
+    <div class="flow__intro">
+      <p class="eyebrow">How We build</p>
+      <h2 id="flow-title">AI in the loop, craft in the output.</h2>
+      <p class="lede">
+        We pair generative AI with modern tools and frameworks to create new applications, modernize existing ones, and automate the work in between.
+      </p>
+    </div>
+
+    <div class="flow__diagram">
+      <div class="flow__core" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"></path>
+        </svg>
+        <span>AI</span>
+      </div>
+
+      <ul class="flow__lanes">
+        {
+          lanes.map((lane) => (
+            <li class={`lane lane--${lane.id}`}>
+              <span class="lane__label">{lane.label}</span>
+              <span class="lane__track" aria-hidden="true">
+                <span class="lane__dot"></span>
+              </span>
+              <span class="lane__tools" aria-hidden="true">
+                {tools.map((tool) => (
+                  <span class="chip" title={tool.name}>
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d={tool.path} />
+                    </svg>
+                  </span>
+                ))}
+              </span>
+              <svg
+                class="lane__arrow"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M4 12h14M13 7l5 5-5 5" />
+              </svg>
+              <span class="lane__app" aria-hidden="true">
+                <span class="app__bar app__bar--1"></span>
+                <span class="app__bar app__bar--2"></span>
+                <span class="app__bar app__bar--3"></span>
+                <span class="app__badge">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d={lane.badge} />
+                  </svg>
+                </span>
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
 </BaseLayout>
 
 <style>
   .hero {
     display: grid;
     align-content: center;
-    min-height: calc(100dvh - 13rem);
-    padding-block: var(--space-24);
+    padding-block: var(--space-24) var(--space-12);
     animation: fade-up 600ms ease both;
   }
 
@@ -61,6 +150,201 @@ const person = {
     font-size: var(--text-lg);
   }
 
+  .flow {
+    padding-block: var(--space-12) var(--space-16);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .flow__intro {
+    max-width: 46rem;
+    margin-bottom: var(--space-12);
+  }
+
+  .flow__intro h2 {
+    margin: 0;
+    font-size: var(--text-xl);
+    letter-spacing: -0.03em;
+  }
+
+  .flow__intro .lede {
+    margin-top: var(--space-4);
+  }
+
+  .flow__diagram {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: var(--space-6);
+    padding: var(--space-8);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background:
+      radial-gradient(
+        circle at 6% 50%,
+        color-mix(in srgb, var(--color-accent) 10%, transparent),
+        transparent 55%
+      ),
+      var(--color-surface);
+  }
+
+  .flow__core {
+    position: relative;
+    display: grid;
+    place-items: center;
+    gap: var(--space-1);
+    width: 5.5rem;
+    aspect-ratio: 1;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: var(--color-bg);
+    color: var(--color-accent);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    letter-spacing: 0.1em;
+  }
+
+  .flow__core svg {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  .flow__core::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border: 1px solid var(--color-accent);
+    border-radius: inherit;
+    animation: pulse-ring 3.2s ease-out infinite;
+  }
+
+  .flow__lanes {
+    display: grid;
+    gap: var(--space-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .lane {
+    display: grid;
+    grid-template-columns: 6.5rem minmax(1.5rem, 1fr) auto auto auto;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .lane__label {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+  }
+
+  .lane__track {
+    position: relative;
+    height: 1px;
+    background: var(--color-border);
+  }
+
+  .lane__dot {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 0.45rem;
+    height: 0.45rem;
+    margin-top: -0.225rem;
+    border-radius: 50%;
+    background: var(--color-accent);
+    box-shadow: 0 0 0.5rem var(--color-accent);
+    opacity: 0;
+    transform: translateX(-50%);
+    animation: travel 3.2s linear infinite;
+  }
+
+  .lane__tools {
+    display: flex;
+    gap: var(--space-2);
+  }
+
+  .chip {
+    display: grid;
+    place-items: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.4rem;
+    color: var(--color-muted);
+    animation: chip 3.2s ease-in-out infinite;
+  }
+
+  .chip svg {
+    width: 0.9rem;
+    height: 0.9rem;
+  }
+
+  .lane__arrow {
+    width: 1rem;
+    height: 1rem;
+    color: var(--color-border);
+  }
+
+  .lane__app {
+    position: relative;
+    display: grid;
+    gap: 0.3rem;
+    width: 5.5rem;
+    padding: var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    background: var(--color-bg);
+  }
+
+  .app__bar {
+    height: 0.3rem;
+    border-radius: 999px;
+    background: var(--color-border);
+  }
+
+  .app__bar--1 {
+    width: 70%;
+  }
+
+  .app__bar--2 {
+    width: 100%;
+  }
+
+  .app__bar--3 {
+    width: 45%;
+  }
+
+  .app__badge {
+    position: absolute;
+    top: -0.5rem;
+    right: -0.5rem;
+    display: grid;
+    place-items: center;
+    width: 1.15rem;
+    height: 1.15rem;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: var(--color-bg);
+    animation: pop 3.2s ease-in-out infinite;
+  }
+
+  .app__badge svg {
+    width: 0.7rem;
+    height: 0.7rem;
+  }
+
+  .lane:nth-child(2) :is(.lane__dot, .chip, .app__badge) {
+    animation-delay: 0.5s;
+  }
+
+  .lane:nth-child(3) :is(.lane__dot, .chip, .app__badge) {
+    animation-delay: 1s;
+  }
+
+  .lane--automate .app__badge svg {
+    animation: spin 5s linear infinite;
+  }
+
   @keyframes fade-up {
     from {
       opacity: 0;
@@ -70,6 +354,130 @@ const person = {
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  @keyframes pulse-ring {
+    from {
+      opacity: 0.6;
+      transform: scale(1);
+    }
+
+    to {
+      opacity: 0;
+      transform: scale(1.25);
+    }
+  }
+
+  @keyframes travel {
+    0% {
+      left: 0;
+      opacity: 0;
+    }
+
+    10%,
+    85% {
+      opacity: 1;
+    }
+
+    100% {
+      left: 100%;
+      opacity: 0;
+    }
+  }
+
+  @keyframes chip {
+    0%,
+    45%,
+    100% {
+      border-color: var(--color-border);
+      color: var(--color-muted);
+    }
+
+    60%,
+    75% {
+      border-color: var(--color-accent);
+      color: var(--color-accent);
+    }
+  }
+
+  @keyframes pop {
+    0%,
+    70%,
+    100% {
+      transform: scale(1);
+    }
+
+    80% {
+      transform: scale(1.18);
+    }
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (max-width: 44rem) {
+    .flow__diagram {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      padding: var(--space-6) var(--space-4);
+    }
+
+    .flow__core {
+      width: 4.5rem;
+    }
+
+    .lane {
+      grid-template-columns: auto minmax(1rem, 1fr) auto auto;
+      gap: var(--space-2);
+    }
+
+    .lane__label {
+      font-size: 0.75rem;
+    }
+
+    .lane__arrow {
+      display: none;
+    }
+
+    .lane__tools {
+      gap: var(--space-1);
+    }
+
+    .chip {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
+    .chip svg {
+      width: 0.7rem;
+      height: 0.7rem;
+    }
+
+    .lane__app {
+      width: 3.5rem;
+      padding: var(--space-2);
+    }
+
+    .app__badge {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .flow__core::after,
+    .lane__dot {
+      display: none;
+    }
+
+    .chip,
+    .app__badge,
+    .app__badge svg {
+      animation: none;
     }
   }
 </style>
