@@ -54,6 +54,7 @@ Resume/                        # Source resume files (About Me content)
 
 ## Recent changes
 
+- Added YouTube, LinkedIn, and X links to the header with accessible icons and structured-data profiles.
 - Added the resume-based About Me page with skills, experience, education, languages, and structured data.
 - Added global Home/About Me navigation and updated the header brand to Parra.Works.
 - Updated the home hero copy and expanded the design-token system.
