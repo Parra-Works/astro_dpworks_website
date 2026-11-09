@@ -55,6 +55,9 @@ Resume/                        # Source resume files (About Me content)
 
 ## Recent changes
 
+- Added an animated AI workflow diagram to the home page and tightened section spacing.
+- Linked education schools to their websites and added flag icons to the Languages section.
+- Added the `squash_merge` skill and command, and centered the footer text.
 - Added YouTube, LinkedIn, and X links to the header with accessible icons and structured-data profiles.
 - Added the resume-based About Me page with skills, experience, education, languages, and structured data.
 - Added global Home/About Me navigation and updated the header brand to Parra.Works.
