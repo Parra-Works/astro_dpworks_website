@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Daniel Parra',
+  jobTitle: 'Software Engineer',
+  url: new URL('/', Astro.site ?? Astro.url.origin).href,
+};
+---
+
+<BaseLayout
+  title="Daniel Parra"
+  description="Daniel Parra is a software engineer building reliable, accessible web experiences."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(person)} />
+
+  <section class="hero">
+    <p class="eyebrow">Software Engineer</p>
+    <h1>Building thoughtful Software for the Web.</h1>
+    <p class="lede">
+      I'm Daniel Parra, founder of Parra.Works. This website captures and represents what I do: designing and building reliable, accessible web experiences with a focus on clean architecture and the details that make products feel effortless. At Parra.Works, we are driven by generative AI, leveraging these tools to optimize workflows and implement effective solutions.
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    display: grid;
+    align-content: center;
+    min-height: calc(100dvh - 13rem);
+    padding-block: var(--space-24);
+    animation: fade-up 600ms ease both;
+  }
+
+  .eyebrow {
+    margin: 0 0 var(--space-4);
+    color: var(--color-accent);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    max-width: 18ch;
+    margin: 0;
+    font-size: var(--text-2xl);
+    letter-spacing: -0.04em;
+  }
+
+  .lede {
+    margin: var(--space-6) 0 0;
+    color: var(--color-muted);
+    font-size: var(--text-lg);
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(1rem);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

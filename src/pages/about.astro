@@ -1,0 +1,483 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const skills = [
+  {
+    label: 'Architecture',
+    items: [
+      'Enterprise architecture',
+      'Solution architecture',
+      'Microservices',
+      'REST API design',
+      'Distributed systems',
+      'Integration architecture',
+      'System design',
+      'Cloud and hybrid platforms',
+      'Secure and scalable design',
+    ],
+  },
+  {
+    label: 'Backend Engineering',
+    items: [
+      'Java',
+      'Java EE / J2EE',
+      'Spring Boot',
+      'Spring Framework',
+      'Hibernate',
+      'JPA',
+      'Apache Tomcat',
+      'REST APIs',
+      'SQL',
+      'Performance tuning',
+    ],
+  },
+  {
+    label: 'Cloud, DevOps & Delivery',
+    items: [
+      'Azure',
+      'Azure DevOps',
+      'CI/CD pipelines',
+      'Git',
+      'Docker',
+      'Bamboo',
+      'Jira',
+      'Agile / Scrum / Kanban',
+      'SDLC',
+      'TDD',
+      'Code reviews',
+    ],
+  },
+  {
+    label: 'Data & BI',
+    items: [
+      'PostgreSQL',
+      'SQL Server',
+      'Teradata',
+      'Databricks',
+      'Netezza',
+      'MicroStrategy Web SDK',
+      'MicroStrategy SDK',
+      'Business intelligence',
+      'Reporting workflows',
+      'Database integrations',
+    ],
+  },
+  {
+    label: 'Additional Technologies',
+    items: ['JavaScript', 'TypeScript', 'Python', 'Swift', 'HTML', 'CSS', 'Linux', 'macOS', 'Windows', 'iOS'],
+  },
+  {
+    label: 'AI Tools',
+    items: ['OpenAI Codex', 'Claude Code', 'OpenCode'],
+  },
+];
+
+const experience = [
+  {
+    title: 'Senior Software Architect',
+    company: 'Premier Inc.',
+    location: 'Remote',
+    dates: 'Aug 2024 – Present',
+    highlights: [
+      'Streamlined CI/CD workflows by integrating Microsoft Copilot with GitHub and Azure DevOps and configuring custom agent skills.',
+      'Automated unit testing and pull request reviews with autonomous Copilot agents, improving code quality and reducing manual bottlenecks.',
+      'Configured pipeline triggers on code commit and push to run targeted regression tests for new features.',
+      'Began migrating the SaaS platform from a custom MicroStrategy Web application to Databricks.',
+      'Built Databricks Genie POCs with custom functions and a connector to resolve patient lists and calculate intersecting patient totals from natural-language requests.',
+      'Built a ReactJS wrapper around the application to simplify setup and daily workflows while the backend systems were updated.',
+    ],
+  },
+  {
+    title: 'Software Architect',
+    company: 'Premier Inc.',
+    location: 'Remote',
+    dates: 'Jan 2022 – Aug 2024',
+    highlights: [
+      'Designed Spring Boot microservices, Hibernate/JPA data layers, and REST APIs for healthcare reporting and integration workflows.',
+      'Standardized API contracts, data-access patterns, code review practices, and deployment-ready architecture decisions.',
+      'Built Java services connecting business applications with MicroStrategy SDK capabilities and SQL-backed reporting systems.',
+      'Optimized SQL queries, database access layers, and service integration patterns across relational and analytic data platforms.',
+      'Built Azure DevOps and Git CI/CD pipelines that automated build, test, and deployment steps for Java services.',
+      'Partnered with product managers, architects, and engineers on sprint planning, technical design, and architecture tradeoffs.',
+    ],
+  },
+  {
+    title: 'Principal Software Engineer',
+    company: 'TEKsystems',
+    location: 'Remote',
+    dates: 'Sep 2015 – Jan 2022',
+    highlights: [
+      'Designed Spring Boot services, relational database integrations, and enterprise backend workflows.',
+      'Built backend services connecting application logic, SQL data stores, and enterprise reporting platforms.',
+      'Led code reviews, mentored engineers on Java/Spring architecture, and applied Agile, SDLC, and TDD practices.',
+      'Defined service boundaries, API behavior, and database integration approaches with architects and product teams.',
+    ],
+  },
+  {
+    title: 'Lead Software Engineer',
+    company: 'Razorsight',
+    location: 'Reston, VA',
+    dates: 'Dec 2013 – Sep 2015',
+    highlights: [
+      'Delivered Java/Spring integrations for telecom analytics and reporting products using MicroStrategy Web SDK extensions, backend services, and SQL access layers.',
+      'Designed Apache Tomcat-deployed services and optimized database performance for reporting workloads.',
+      'Led testing, design reviews, and peer reviews across Java delivery workstreams.',
+    ],
+  },
+  {
+    title: 'Senior Software Engineer – BI Lead',
+    company: 'Accenture',
+    location: 'Arlington, VA',
+    dates: 'Jun 2010 – Dec 2013',
+    highlights: [
+      'Led BI work for the Accenture Interactive Customer Insight team, overseeing the architecture, implementation, and support of a commercial retail data model.',
+      'Coordinated enterprise solution implementation with an offshore team in India across multiple BI platforms and technologies.',
+    ],
+  },
+  {
+    title: 'Senior Associate',
+    company: 'Qlarion, a GCOM Company',
+    location: 'Arlington, VA',
+    dates: 'Aug 2008 – Jun 2010',
+    highlights: [
+      'Delivered business intelligence initiatives as a Senior BI Consultant using the MicroStrategy enterprise platform for clients including CVS, Giant Eagle, and Staples.',
+      'Architected and implemented data models in Netezza and Teradata environments.',
+      'Created, developed, and maintained the MicroStrategy project infrastructure throughout the project lifecycle.',
+    ],
+  },
+  {
+    title: 'Senior MicroStrategy Consultant',
+    company: 'MicroStrategy',
+    location: 'McLean, VA',
+    dates: 'Jan 2006 – Aug 2008',
+    highlights: [
+      'Partnered with Fortune 500 clients including McDonald’s, Nordstrom, Intel, Bank of America, Conwell, and Citibank across diverse engagements.',
+      'Analyzed business requirements and provided guidance on optimizing the MicroStrategy platform.',
+      'Managed all phases of the MicroStrategy project lifecycle, from requirements and solution design through development, testing, and deployment.',
+      'Served as the MicroStrategy Web SDK specialist using Java, HTML, JavaScript, Apache Tomcat, and databases including SQL Server, PostgreSQL, Teradata, and Netezza.',
+    ],
+  },
+  {
+    title: 'Software Engineer',
+    company: 'Hewlett Packard Enterprise',
+    location: 'Guadalajara, JAL, Mexico',
+    dates: 'Jan 2003 – Dec 2005',
+    highlights: [
+      'Analyzed and evaluated the organization’s SAP Ariba procurement solution as an IT Analyst.',
+      'Provided dedicated technical support for HP Global Indirect Procurement applications.',
+      'Developed a Visual Studio tool to automate the capture of incident information.',
+    ],
+  },
+  {
+    title: 'Software Engineer',
+    company: 'GE Bank – Finance Services',
+    location: 'Mexico City, Mexico',
+    dates: 'Jan 2000 – Dec 2002',
+    highlights: [
+      'Contributed as a Senior Java Developer across web application initiatives for GE Card Services and GE Bank Mexico.',
+      'Helped migrate and upgrade the bank’s legacy workstations and servers to modernized Sun Microsystems infrastructure.',
+    ],
+  },
+  {
+    title: 'Software Engineer',
+    company: 'Softtek',
+    location: 'Mexico City, Mexico',
+    dates: 'Jan 1997 – Dec 1999',
+    highlights: [
+      'Worked as a web developer on projects using Microsoft ASP and Java technologies.',
+      'Served as lead software engineer for a custom Microsoft ASP application project at Banco Latino in Lima, Peru.',
+    ],
+  },
+];
+
+const education = [
+  {
+    degree: 'M.S., Computer Software Engineering',
+    school: 'University of Maryland Global Campus',
+    dates: '2021 – 2023',
+    note: 'GPA 3.6',
+  },
+  {
+    degree: 'B.S., Computer Science',
+    school: 'Tecnológico de Monterrey',
+    dates: '1993 – 1998',
+    note: 'GPA 3.0',
+  },
+];
+
+const profile = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  mainEntity: {
+    '@type': 'Person',
+    name: 'Daniel Parra',
+    jobTitle: 'Senior Software Architect',
+    url: new URL('/about', Astro.site ?? Astro.url.origin).href,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Potomac',
+      addressRegion: 'MD',
+      addressCountry: 'US',
+    },
+    sameAs: ['https://linkedin.com/in/danpaji'],
+    alumniOf: education.map(({ school }) => ({ '@type': 'CollegeOrUniversity', name: school })),
+    knowsLanguage: ['Spanish', 'English'],
+  },
+};
+---
+
+<BaseLayout
+  title="About Me"
+  description="Daniel Parra is a Senior Software Architect and Principal Java Engineer with 20+ years of experience in enterprise Java, Spring, cloud, and data platforms."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(profile)} />
+
+  <article class="about">
+    <header class="intro">
+      <p class="eyebrow">About Me</p>
+      <h1>Daniel Parra</h1>
+      <p class="role">Senior Software Architect | Principal Software Engineer</p>
+      <p class="meta">
+        Potomac, MD ·
+        <a href="https://linkedin.com/in/danpaji" rel="me noopener noreferrer">LinkedIn</a>
+      </p>
+      <p class="summary">
+        Senior Software Architect and Principal Java Engineer with 20+ years of experience designing enterprise Java and Spring systems, microservices, REST APIs, SQL data layers, CI/CD pipelines, and BI/reporting integrations. Brings 1 year of experience leveraging AI tools—including Copilot, Codex, and OpenCode—to accelerate new application features and automate pull request reviews and commits. Delivered architecture and engineering work across five enterprise organizations by modernizing legacy J2EE/Spring applications, standardizing API and data-access patterns, improving database performance, and leading cross-functional Agile delivery.
+      </p>
+    </header>
+
+    <section aria-labelledby="skills-heading">
+      <h2 id="skills-heading">Core Skills</h2>
+      <div class="skills">
+        {
+          skills.map((group) => (
+            <section class="skill-group">
+              <h3>{group.label}</h3>
+              <ul>
+                {group.items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </section>
+          ))
+        }
+      </div>
+    </section>
+
+    <section aria-labelledby="education-heading">
+      <h2 id="education-heading">Education</h2>
+      <ul class="education">
+        {
+          education.map((item) => (
+            <li>
+              <h3>{item.degree}</h3>
+              <p>{item.school} · {item.dates} · {item.note}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section aria-labelledby="languages-heading">
+      <h2 id="languages-heading">Languages</h2>
+      <p>Spanish (native/bilingual) · English (full professional)</p>
+    </section>
+
+    <section aria-labelledby="experience-heading">
+      <h2 id="experience-heading">Experience</h2>
+      <ol class="timeline">
+        {
+          experience.map((job) => (
+            <li class="job">
+              <h3>{job.title}</h3>
+              <p class="job__meta">
+                {job.company} · {job.location} · {job.dates}
+              </p>
+              <ul>
+                {job.highlights.map((highlight) => (
+                  <li>{highlight}</li>
+                ))}
+              </ul>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+  </article>
+</BaseLayout>
+
+<style>
+  .about {
+    max-width: 60rem;
+    margin-inline: auto;
+    padding-block: var(--space-16) var(--space-24);
+    animation: fade-up 600ms ease both;
+  }
+
+  .eyebrow {
+    margin: 0 0 var(--space-4);
+    color: var(--color-accent);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: var(--text-2xl);
+    letter-spacing: -0.04em;
+  }
+
+  .role {
+    margin: var(--space-4) 0 0;
+    font-size: var(--text-lg);
+  }
+
+  .meta {
+    margin: var(--space-2) 0 0;
+    color: var(--color-muted);
+    font-size: var(--text-sm);
+  }
+
+  .summary {
+    margin: var(--space-6) 0 0;
+    color: var(--color-muted);
+    font-size: var(--text-lg);
+  }
+
+  section {
+    margin-top: var(--space-16);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--color-border);
+  }
+
+  section h2 {
+    margin: 0 0 var(--space-8);
+    font-size: var(--text-xl);
+    letter-spacing: -0.03em;
+  }
+
+  #skills-heading {
+    margin-bottom: var(--space-4);
+  }
+
+  .skills {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: var(--space-8);
+  }
+
+  .skill-group h3 {
+    margin: 0 0 var(--space-3);
+    color: var(--color-muted);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .skill-group ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .skill-group li {
+    padding: var(--space-1) var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    background: var(--color-surface);
+    font-size: var(--text-sm);
+  }
+
+  .timeline {
+    display: grid;
+    gap: var(--space-8);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .job {
+    position: relative;
+    padding-left: var(--space-6);
+    border-left: 1px solid var(--color-border);
+  }
+
+  .job::before {
+    content: '';
+    position: absolute;
+    top: 0.45rem;
+    left: -4px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-accent);
+  }
+
+  .job h3 {
+    margin: 0;
+    font-size: var(--text-lg);
+  }
+
+  .job__meta {
+    margin: var(--space-1) 0 var(--space-3);
+    color: var(--color-muted);
+    font-size: var(--text-sm);
+  }
+
+  .job ul {
+    display: grid;
+    gap: var(--space-2);
+    margin: 0;
+    padding-left: 1.1rem;
+    color: var(--color-muted);
+  }
+
+  .job li::marker {
+    color: var(--color-accent);
+  }
+
+  .education {
+    display: grid;
+    gap: var(--space-6);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .education h3 {
+    margin: 0;
+    font-size: var(--text-lg);
+  }
+
+  .education p {
+    margin: var(--space-1) 0 0;
+    color: var(--color-muted);
+    font-size: var(--text-sm);
+  }
+
+  @media (max-width: 40rem) {
+    .about {
+      padding-block: var(--space-8) var(--space-16);
+    }
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(1rem);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
